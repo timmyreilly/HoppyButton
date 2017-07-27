@@ -33,13 +33,20 @@ namespace HoppyButton
 
             stackPanel1.Children.Add(but1);
 
-            but1.PointerMoved += mm; 
+            but1.PointerMoved += mm;
+            but1.Click += but1Clicked; 
         }
 
         static void mm(object sender, PointerRoutedEventArgs e)
         {
             but1.Margin = new Thickness(rand.Next() % 200); 
            
+        }
+
+        static void but1Clicked(object sender, RoutedEventArgs e)
+        {
+            Button b = sender as Button;
+            b.Content = "Hey You got me"; 
         }
         
         private void Button_PointerEntered(object sender, PointerRoutedEventArgs e)
@@ -51,6 +58,11 @@ namespace HoppyButton
         {
             Words.Text = e.ToString();
 
+        }
+
+        private void stackPanel1_PointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            
         }
     }
 }

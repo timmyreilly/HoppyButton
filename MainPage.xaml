@@ -8,9 +8,20 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel Name="stackPanel1">
-            <Button x:Name="Cheese" PointerEntered="Button_PointerEntered" Click="Cheese_Click" Content="Cheese" Height="59" Margin="0,164,0,137" Width="122" HorizontalAlignment="Center" UseLayoutRounding="True"></Button>
-            <TextBlock x:Name="Words"></TextBlock>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Column="0" Grid.Row="0" Background="Red"></Border>
+        <Border Grid.Column="1" Grid.Row="1" Background="AliceBlue"></Border>
+
+        <StackPanel Name="stackPanel1" Margin="10" Background="#E81123" Grid.Column="0" Grid.Row="0" PointerEntered="stackPanel1_PointerEntered">
+            <Button x:Name="Cheese" PointerEntered="Button_PointerEntered" Click="Cheese_Click" Content="Cheese" Height="auto" Width="auto" ></Button>
+            <TextBlock x:Name="Words" Text="Hello World"></TextBlock>
         </StackPanel>
 
     </Grid>
