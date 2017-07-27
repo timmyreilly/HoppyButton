@@ -8,6 +8,10 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel Name="stackPanel1">
+            <Button x:Name="Cheese" PointerEntered="Button_PointerEntered" Click="Cheese_Click" Content="Cheese" Height="59" Margin="0,164,0,137" Width="122" HorizontalAlignment="Center" UseLayoutRounding="True"></Button>
+            <TextBlock x:Name="Words"></TextBlock>
+        </StackPanel>
 
     </Grid>
 </Page>

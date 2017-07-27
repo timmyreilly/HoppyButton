@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -22,9 +23,34 @@ namespace HoppyButton
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        static Random rand = new Random();
+
+        static Button but1 = new Button { Content = "but1", IsEnabled = true, Margin=new Thickness(10) }; 
+
         public MainPage()
         {
             this.InitializeComponent();
+
+            stackPanel1.Children.Add(but1);
+
+            but1.PointerMoved += mm; 
+        }
+
+        static void mm(object sender, PointerRoutedEventArgs e)
+        {
+            but1.Margin = new Thickness(rand.Next() % 200); 
+           
+        }
+        
+        private void Button_PointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            Cheese.Margin = new Thickness(rand.Next() % 200 ); 
+        }
+
+        private void Cheese_Click(object sender, RoutedEventArgs e)
+        {
+            Words.Text = e.ToString();
+
         }
     }
 }
