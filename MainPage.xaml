@@ -19,9 +19,13 @@
         <Border Grid.Column="0" Grid.Row="0" Background="Red"></Border>
         <Border Grid.Column="1" Grid.Row="1" Background="AliceBlue"></Border>
 
-        <StackPanel Name="stackPanel1" Margin="10" Background="#E81123" Grid.Column="0" Grid.Row="0" PointerEntered="stackPanel1_PointerEntered">
+        <StackPanel Name="stackPanel1" Margin="10" Background="#E81123" Grid.Column="0" Grid.Row="0">
             <Button x:Name="Cheese" PointerEntered="Button_PointerEntered" Click="Cheese_Click" Content="Cheese" Height="auto" Width="auto" ></Button>
             <TextBlock x:Name="Words" Text="Hello World"></TextBlock>
+        </StackPanel>
+
+        <StackPanel Name="stackPanel3" Margin="10" Background="AntiqueWhite" Grid.Column="1" Grid.Row="1" PointerEntered="stackPanel3_PointerEntered">
+            <Button Name="button3" Click="button3_Click" Content="Here we go!"></Button>
         </StackPanel>
 
     </Grid>

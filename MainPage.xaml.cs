@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -25,7 +26,9 @@ namespace HoppyButton
     {
         static Random rand = new Random();
 
-        static Button but1 = new Button { Content = "but1", IsEnabled = true, Margin=new Thickness(10) }; 
+        static Button but1 = new Button { Content = "but1", IsEnabled = true };
+
+        static TextBox t3 = new TextBox { Text = "mmmmm" };
 
         public MainPage()
         {
@@ -33,25 +36,35 @@ namespace HoppyButton
 
             stackPanel1.Children.Add(but1);
 
-            but1.PointerMoved += mm;
-            but1.Click += but1Clicked; 
+            stackPanel3.Children.Add(t3);
+
+            but1.PointerMoved += Mm;
+            but1.Click += But1Clicked;
+
+            stackPanel3.PointerExited += GoodBye;
+            stackPanel3.PointerEntered += Welcome;
         }
 
-        static void mm(object sender, PointerRoutedEventArgs e)
+        static void Mm(object sender, PointerRoutedEventArgs e)
         {
-            but1.Margin = new Thickness(rand.Next() % 200); 
-           
+            var number = rand.Next() % 200;
+            but1.Margin = new Thickness(number, rand.Next() % 200, rand.Next() % 200, rand.Next() % 200);
+            but1.Content = number;
+
         }
 
-        static void but1Clicked(object sender, RoutedEventArgs e)
+        static void But1Clicked(object sender, RoutedEventArgs e)
         {
             Button b = sender as Button;
-            b.Content = "Hey You got me"; 
+            b.Content = "Hey You got me";
+
         }
-        
+
         private void Button_PointerEntered(object sender, PointerRoutedEventArgs e)
         {
-            Cheese.Margin = new Thickness(rand.Next() % 200 ); 
+            Cheese.Margin = new Thickness(rand.Next() % 200, rand.Next() % 200, rand.Next() % 200, rand.Next() % 200);
+
+            Cheese.Content = rand.Next() % 200;
         }
 
         private void Cheese_Click(object sender, RoutedEventArgs e)
@@ -60,9 +73,48 @@ namespace HoppyButton
 
         }
 
-        private void stackPanel1_PointerEntered(object sender, PointerRoutedEventArgs e)
+        private void GoodBye(object sender, PointerRoutedEventArgs e)
         {
-            
+            t3.Text = "Goodbye";
+
+            if (stackPanel3.Children.Count > 2)
+            {
+                stackPanel3.Children.RemoveAt(stackPanel3.Children.Count - 1);
+            }
+        }
+
+        private void stackPanel3_PointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            t3.Text = "Welcome";
+
+        }
+
+        private async void Welcome(object sender, PointerRoutedEventArgs e)
+        {
+            Button b4 = new Button { Content = $"Mozy {e.ToString()}" };
+
+            if (stackPanel3.Children.Count < 3)
+            {
+                
+                stackPanel3.Children.Add(b4);
+            }
+            for (int i = 0; i < 10; i++)
+            {
+                await Task.Delay(TimeSpan.FromSeconds(1));
+                b4.Margin = new Thickness(i*10);
+            }
+
+        }
+
+        private void button3_Click(object sender, RoutedEventArgs e)
+        {
+            for (var i = 0; i < 10; i++)
+            {
+                int[] mar = { rand.Next(50), rand.Next(50), rand.Next(50), rand.Next(50) };
+
+                Button but = new Button { Content = $"{mar[0]} {mar[1]} {mar[2]} {mar[3]}", Padding = new Thickness(mar[0], mar[1], mar[2], mar[3]) };
+                stackPanel3.Children.Add(but);
+            }
         }
     }
 }
