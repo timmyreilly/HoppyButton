@@ -37,14 +37,13 @@ namespace HoppyButton
             this.InitializeComponent();
 
             stackPanel1.Children.Add(but1);
-
-            stackPanel3.Children.Add(t3);
-
+            
             but1.PointerMoved += Mm;
             but1.Click += But1Clicked;
 
-            stackPanel3.PointerExited += GoodBye;
-            stackPanel3.PointerEntered += Welcome;
+            stackPanel4.Children.Add(t3);
+            stackPanel4.PointerExited += GoodBye;
+            stackPanel4.PointerEntered += Welcome;
         }
 
         static void Mm(object sender, PointerRoutedEventArgs e)
@@ -79,13 +78,13 @@ namespace HoppyButton
         {
             t3.Text = "Goodbye";
 
-            if (stackPanel3.Children.Count > 2)
+            if (stackPanel4.Children.Count > 2)
             {
-                stackPanel3.Children.RemoveAt(stackPanel3.Children.Count - 1);
+                stackPanel4.Children.RemoveAt(stackPanel4.Children.Count - 1);
             }
         }
 
-        private void stackPanel3_PointerEntered(object sender, PointerRoutedEventArgs e)
+        private void stackPanel4_PointerEntered(object sender, PointerRoutedEventArgs e)
         {
             t3.Text = "Welcome";
 
@@ -95,10 +94,10 @@ namespace HoppyButton
         {
             Button b4 = new Button { Content = $"Mozy {e.ToString()}" };
 
-            if (stackPanel3.Children.Count < 3)
+            if (stackPanel4.Children.Count < 3)
             {
                 
-                stackPanel3.Children.Add(b4);
+                stackPanel4.Children.Add(b4);
             }
             for (int i = 0; i < 10; i++)
             {
@@ -108,14 +107,14 @@ namespace HoppyButton
 
         }
 
-        private void button3_Click(object sender, RoutedEventArgs e)
+        private void button4_Click(object sender, RoutedEventArgs e)
         {
             for (var i = 0; i < 10; i++)
             {
                 int[] mar = { rand.Next(50), rand.Next(50), rand.Next(50), rand.Next(50) };
 
                 Button but = new Button { Content = $"{mar[0]} {mar[1]} {mar[2]} {mar[3]}", Padding = new Thickness(mar[0], mar[1], mar[2], mar[3]) };
-                stackPanel3.Children.Add(but);
+                stackPanel4.Children.Add(but);
             }
         }
 

@@ -22,12 +22,16 @@
             <TextBlock x:Name="Words" Text="Hello World"></TextBlock>
         </StackPanel>
 
-        <StackPanel Name="stackPanel3" Margin="10" Background="#FFF100" Grid.Column="1" Grid.Row="1" PointerEntered="stackPanel3_PointerEntered">
-            <Button Name="button3" Click="button3_Click" Content="Here we go!"></Button>
-        </StackPanel>
-
         <StackPanel Name="stackPanel2" Margin="10" Grid.Column="1" Grid.Row="0" Background="LightGreen" PointerEntered="stackPanel2_PointerEntered">
             <Image Name="catPhoto"></Image>
+        </StackPanel>
+
+        <StackPanel Name="stackPanel3" Margin="10" Grid.Column="0" Grid.Row="1" Background="LightBlue">
+            
+        </StackPanel>
+
+        <StackPanel Name="stackPanel4" Margin="10" Background="#FFF100" Grid.Column="1" Grid.Row="1" PointerEntered="stackPanel4_PointerEntered">
+            <Button Name="button4" Click="button4_Click" Content="Here we go!"></Button>
         </StackPanel>
 
     </Grid>
