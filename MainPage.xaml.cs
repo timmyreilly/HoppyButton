@@ -21,9 +21,28 @@ using Windows.UI.Xaml.Navigation;
 
 namespace HoppyButton
 {
+    class Person
+    {
+        Button myButton; 
+        public Person(Button but)
+        {
+            myButton = but; 
+            but.Click += this.cliffDive;
+        }
+
+        void cliffDive(object sender, RoutedEventArgs e)
+        {
+            Debug.WriteLine("Jumping!");
+            myButton.Click -= this.cliffDive; 
+        }
+    }
+
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
+    /// 
+
+
     public sealed partial class MainPage : Page
     {
         static Random rand = new Random();
@@ -44,8 +63,16 @@ namespace HoppyButton
             stackPanel4.Children.Add(t3);
             stackPanel4.PointerExited += GoodBye;
             stackPanel4.PointerEntered += Welcome;
+
+            new Person(but3); 
         }
 
+        private void stackPanel3_PointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            Box3.Text = $"{DateTime.Now}"; 
+        }
+
+        
         static void Mm(object sender, PointerRoutedEventArgs e)
         {
             var number = rand.Next() % 200;
@@ -146,5 +173,7 @@ namespace HoppyButton
                 Debug.WriteLine(ex.ToString()); 
             }
         }
+
+        
     }
 }

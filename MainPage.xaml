@@ -26,8 +26,9 @@
             <Image Name="catPhoto"></Image>
         </StackPanel>
 
-        <StackPanel Name="stackPanel3" Margin="10" Grid.Column="0" Grid.Row="1" Background="LightBlue">
-            
+        <StackPanel Name="stackPanel3" Margin="10" Grid.Column="0" Grid.Row="1" Background="LightBlue" PointerEntered="stackPanel3_PointerEntered">
+            <TextBlock Name="Box3"></TextBlock>
+            <Button Name="but3" Content="Jump!"></Button>
         </StackPanel>
 
         <StackPanel Name="stackPanel4" Margin="10" Background="#FFF100" Grid.Column="1" Grid.Row="1" PointerEntered="stackPanel4_PointerEntered">
