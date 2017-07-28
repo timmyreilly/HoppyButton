@@ -126,7 +126,7 @@ namespace HoppyButton
 
         private async void GetCatPhoto()
         {
-            Uri photoUri = new Uri("http://thecatapi.com/api/images/get");
+            Uri photoUri = new Uri("http://thecatapi.com/api/images/get?type=gif");
             try
             {
                 using (var client = new HttpClient())
@@ -142,8 +142,9 @@ namespace HoppyButton
                         }
                     }
                 }
-            } catch 
+            } catch (Exception ex)
             {
+                Debug.WriteLine(ex.ToString()); 
             }
         }
     }
