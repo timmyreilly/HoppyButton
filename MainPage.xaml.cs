@@ -37,6 +37,33 @@ namespace HoppyButton
         }
     }
 
+    class Printer
+    {
+        StackPanel myPanel;
+        public Printer(StackPanel sp)
+        {
+            myPanel = sp;
+            sp.PointerEntered += this.startPrintingAsync;
+            sp.PointerExited += this.clear;
+        }
+
+        async void startPrintingAsync(object sender, PointerRoutedEventArgs e)
+        {
+            var i = 0;
+            while (true)
+            {
+                await Task.Delay(TimeSpan.FromSeconds(1));
+                i++;
+                myPanel.Children.Add(new TextBlock { Text = $"{DateTime.Now} + margin: {i*10} ", Margin = new Thickness(i * 10) });
+            }
+        }
+
+        void clear(object sender, PointerRoutedEventArgs e)
+        {
+            myPanel.Children.Clear(); 
+        }
+    }
+
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
@@ -63,13 +90,29 @@ namespace HoppyButton
             stackPanel4.Children.Add(t3);
             stackPanel4.PointerExited += GoodBye;
             stackPanel4.PointerEntered += Welcome;
+            stackPanel3.PointerExited += Clear; 
 
-            new Person(but3); 
+            new Person(but3);
+
+            new Printer(stackPanel3); 
+        }
+
+        private void Clear(object sender, PointerRoutedEventArgs e)
+        {
+            StackPanel s = sender as StackPanel;
+
+            while(s.Children.Count > 2)
+            {
+                s.Children.RemoveAt(s.Children.Count - 1);
+            }
         }
 
         private void stackPanel3_PointerEntered(object sender, PointerRoutedEventArgs e)
         {
-            Box3.Text = $"{DateTime.Now}"; 
+            Box3.Text = $"Welcome"; 
+
+            
+            
         }
 
         
