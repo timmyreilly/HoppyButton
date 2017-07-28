@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.Foundation;
@@ -13,6 +14,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -114,6 +116,34 @@ namespace HoppyButton
 
                 Button but = new Button { Content = $"{mar[0]} {mar[1]} {mar[2]} {mar[3]}", Padding = new Thickness(mar[0], mar[1], mar[2], mar[3]) };
                 stackPanel3.Children.Add(but);
+            }
+        }
+
+        private void stackPanel2_PointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            GetCatPhoto(); 
+        }
+
+        private async void GetCatPhoto()
+        {
+            Uri photoUri = new Uri("http://thecatapi.com/api/images/get");
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    var photoResult = await client.GetAsync(photoUri);
+                    using (var imageStream = await photoResult.Content.ReadAsStreamAsync())
+                    {
+                        BitmapImage image = new BitmapImage();
+                        using (var randomStream = imageStream.AsRandomAccessStream())
+                        {
+                            await image.SetSourceAsync(randomStream);
+                            catPhoto.Source = image;
+                        }
+                    }
+                }
+            } catch 
+            {
             }
         }
     }
